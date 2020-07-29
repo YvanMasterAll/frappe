@@ -335,6 +335,8 @@ def export_query():
 		xlsx_data = build_xlsx_data(columns, data, visible_idx, include_indentation)
 		xlsx_file = make_xlsx(xlsx_data, "Query Report")
 
+		# Change: 标题翻译
+		report_name = _(report_name)
 		frappe.response['filename'] = report_name + '.xlsx'
 		frappe.response['filecontent'] = xlsx_file.getvalue()
 		frappe.response['type'] = 'binary'

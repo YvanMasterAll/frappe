@@ -135,7 +135,8 @@ def export_query():
 	doctype = form_params.doctype
 	add_totals_row = None
 	file_format_type = form_params["file_format_type"]
-	title = title or doctype
+	# Change: 标题翻译
+	title = _(title) or _(doctype)
 
 	del form_params["doctype"]
 	del form_params["file_format_type"]
@@ -162,7 +163,7 @@ def export_query():
 	if add_totals_row:
 		ret = append_totals_row(ret)
 
-	data = [['Sr'] + get_labels(db_query.fields, doctype)]
+	data = [[_('Sr')] + get_labels(db_query.fields, doctype)]
 	for i, row in enumerate(ret):
 		data.append([i+1] + list(row))
 
@@ -231,7 +232,8 @@ def get_labels(fields, doctype):
 		label = df.label if df else fieldname.title()
 		if label in labels:
 			label = doctype + ": " + label
-		labels.append(label)
+		# Change: 字段翻译
+		labels.append(_(label))
 
 	return labels
 
