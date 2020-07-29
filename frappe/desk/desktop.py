@@ -282,6 +282,8 @@ class Workspace:
 
 				# Translate label
 				new_item["label"] = _(item.label) if item.label else _(item.link_to)
+				if item.format:
+					new_item["format"] = _(item.format)
 
 				items.append(new_item)
 

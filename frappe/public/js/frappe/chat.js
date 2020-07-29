@@ -1043,9 +1043,11 @@ frappe.chat.emoji  = function (fn) {
 
 			resolve(frappe.chat.emojis)
 		}
-		else
-			$.get('https://cdn.rawgit.com/frappe/emoji/master/emoji', (data) => {
-				frappe.chat.emojis = JSON.parse(data)
+        else
+            // Change: 表情数据本地化
+			$.get('/assets/frappe/emoji/chat.json', (data) => {
+                // frappe.chat.emojis = JSON.parse(data)
+                frappe.chat.emojis = data
 
 				if ( fn )
 					fn(frappe.chat.emojis)

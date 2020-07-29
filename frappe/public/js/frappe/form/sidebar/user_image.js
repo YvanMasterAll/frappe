@@ -85,7 +85,7 @@ frappe.ui.form.setup_user_image_event = function(frm) {
 		if ($target.is('.sidebar-image-change')) {
 			if(!field.$input) {
 				field.make_input();
-			}
+            }
 			field.$input.trigger('click');
 		} else {
 			/// on remove event for a sidebar image wrapper remove attach file.

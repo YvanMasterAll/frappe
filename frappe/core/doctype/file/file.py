@@ -432,7 +432,7 @@ class File(Document):
 		return None
 
 
-	def save_file(self, content=None, decode=False, ignore_existing_file_check=False):
+	def save_file(self, content=None, decode=False, ignore_existing_file_check=False): 
 		file_exists = False
 		self.content = content
 		if decode:
@@ -464,10 +464,8 @@ class File(Document):
 			if file_doc.exists_on_disk():
 				self.file_url  = duplicate_file.file_url
 				file_exists = True
-
 		if os.path.exists(encode(get_files_path(self.file_name, is_private=self.is_private))):
 			self.file_name = get_file_name(self.file_name, self.content_hash[-6:])
-
 		if not file_exists:
 			call_hook_method("before_write_file", file_size=self.file_size)
 			write_file_method = get_hook_method('write_file')

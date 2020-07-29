@@ -906,6 +906,12 @@ frappe.views.QueryReport = class QueryReport extends frappe.views.BaseList {
 
 				return row_obj;
 			}
+			// Change: 如果是全字母数据则执行翻译
+			for (let key in row) {
+				if (frappe.utils.is_full_letter(row[key])) {
+					row[key] = __(row[key])
+				}
+			}
 			return row;
 		});
 	}

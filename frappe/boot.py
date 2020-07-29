@@ -208,6 +208,9 @@ def get_column(doctype):
 
 def load_translations(bootinfo):
 	messages = frappe.get_lang_dict("boot")
+	# Change: 获取所有翻译数据
+	# from frappe.translate import get_full_dict
+	# messages = get_full_dict(frappe.local.lang)
 
 	bootinfo["lang"] = frappe.lang
 

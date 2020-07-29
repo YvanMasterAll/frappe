@@ -42,7 +42,6 @@ frappe.breadcrumbs = {
 				type:type
 			}
 		}
-
 		frappe.breadcrumbs.all[frappe.breadcrumbs.current_page()] = obj;
 		frappe.breadcrumbs.update();
 	},

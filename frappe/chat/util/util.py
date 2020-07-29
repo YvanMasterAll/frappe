@@ -108,7 +108,8 @@ def get_emojis():
 	emojis = redis.hget('frappe_emojis', 'emojis')
 
 	if not emojis:
-		resp  = requests.get('http://git.io/frappe-emoji')
+		# Change: 表情地址修改
+		resp  = requests.get('http://lc-UPcORvyV.cn-n1.lcfile.com/df7e0a2a129546afd2e0/chat.json')
 		if resp.ok:
 			emojis = resp.json()
 			redis.hset('frappe_emojis', 'emojis', emojis)

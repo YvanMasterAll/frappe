@@ -319,6 +319,11 @@ def export_query():
 	if file_format_type == "Excel":
 		data = run(report_name, filters, custom_columns=custom_columns)
 		data = frappe._dict(data)
+		# Change: 如果是全字母数据则执行翻译
+		for row in data.result:
+			for cell in row:
+				if frappe.utils.is_full_letter(row[cell]):
+					row[cell] = _(row[cell])
 		if not data.columns:
 			frappe.respond_as_web_page(_("No data to export"),
 			_("You can try changing the filters of your report."))

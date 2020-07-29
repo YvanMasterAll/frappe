@@ -992,7 +992,6 @@ frappe.views.ReportView = class ReportView extends frappe.views.ListView {
 			}
 		}
 
-
 		return {
 			id: id,
 			field: fieldname,

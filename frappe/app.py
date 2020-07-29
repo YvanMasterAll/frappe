@@ -52,7 +52,6 @@ def application(request):
 		rollback = True
 
 		init_request(request)
-
 		frappe.recorder.record()
 		frappe.monitor.start()
 		frappe.rate_limiter.apply()
@@ -60,7 +59,7 @@ def application(request):
 		if frappe.local.form_dict.cmd:
 			response = frappe.handler.handle()
 
-		elif frappe.request.path.startswith("/api/"):
+		elif frappe.request.path.startswith("/api/"):            
 			response = frappe.api.handle()
 
 		elif frappe.request.path.startswith('/backups'):
@@ -132,7 +131,6 @@ def init_request(request):
 		raise frappe.SessionStopped('Session Stopped')
 
 	make_form_dict(request)
-
 	frappe.local.http_request = frappe.auth.HTTPRequest()
 
 def make_form_dict(request):

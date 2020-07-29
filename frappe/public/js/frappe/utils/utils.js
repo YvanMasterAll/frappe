@@ -27,6 +27,11 @@ Object.assign(frappe.utils, {
 	replace_newlines(t) {
 		return t?t.replace(/\n/g, '<br>'):'';
 	},
+	// Change: 判断是否是全字母
+	is_full_letter: function(txt) {
+		let regExp = /^[a-zA-Z\s]+$/
+		return regExp.test(txt)
+	},
 	is_html: function(txt) {
 		if (!txt) return false;
 

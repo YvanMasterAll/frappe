@@ -192,7 +192,6 @@ class LoginManager:
 		# start session
 		frappe.local.session_obj = Session(user=self.user, resume=resume,
 			full_name=self.full_name, user_type=self.user_type)
-
 		# reset user if changed to Guest
 		self.user = frappe.local.session_obj.user
 		frappe.local.session = frappe.local.session_obj.data
@@ -414,7 +413,6 @@ def validate_ip_address(user):
 	ip_list = user.get_restricted_ip_list()
 	if not ip_list:
 		return
-
 	system_settings = frappe.get_cached_doc("System Settings") if not frappe.flags.in_test else frappe.get_single("System Settings")
 	# check if bypass restrict ip is enabled for all users
 	bypass_restrict_ip_check = system_settings.bypass_restrict_ip_check_if_2fa_enabled

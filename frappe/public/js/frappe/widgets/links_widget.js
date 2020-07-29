@@ -37,6 +37,7 @@ export default class LinksWidget extends Widget {
 		};
 
 		const get_link_for_item = item => {
+			// Change: 更改提示带翻译
 			if (is_link_disabled(item)) {
 				return `<span class="link-content ellipsis disabled-link">${
 					item.label ? item.label : item.name
@@ -46,7 +47,7 @@ export default class LinksWidget extends Widget {
 							<h3 class="popover-title" style="display: none;"></h3>
 							<div class="popover-content" style="padding: 12px;">
 								<div class="small text-muted">${__("You need to create these first: ")}</div>
-		 						<div class="small">${item.incomplete_dependencies.join(", ")}</div>
+		 						<div class="small">${__(item.incomplete_dependencies.map(d => __(d)).join(", "))}</div>
 							</div>
 						</div>`;
 			}

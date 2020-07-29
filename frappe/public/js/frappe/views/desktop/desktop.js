@@ -236,15 +236,23 @@ class DesktopPage {
 
 		this.allow_customization && this.make_customization_link();
 		this.data.onboarding && this.data.onboarding.items.length && this.make_onboarding();
-		this.make_charts().then(() => {
-			this.make_shortcuts();
-			this.make_cards();
+		// Change: 暂时不在桌面中显示图表
+		this.make_shortcuts();
+		this.make_cards();
 
-			if (this.allow_customization) {
-				// Move the widget group up to align with labels if customization is allowed
-				$('.desk-page .widget-group:visible:first').css('margin-top', '-25px');
-			}
-		});
+		if (this.allow_customization) {
+			// Move the widget group up to align with labels if customization is allowed
+			$('.desk-page .widget-group:visible:first').css('margin-top', '-25px');
+		}
+		// this.make_charts().then(() => {
+		// 	this.make_shortcuts();
+		// 	this.make_cards();
+
+		// 	if (this.allow_customization) {
+		// 		// Move the widget group up to align with labels if customization is allowed
+		// 		$('.desk-page .widget-group:visible:first').css('margin-top', '-25px');
+		// 	}
+		// });
 	}
 
 	get_data() {

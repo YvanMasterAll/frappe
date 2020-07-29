@@ -208,7 +208,6 @@ def upload_file():
 		ret.save(ignore_permissions=ignore_permissions)
 		return ret
 
-
 def get_attr(cmd):
 	"""get method object from cmd"""
 	if '.' in cmd:

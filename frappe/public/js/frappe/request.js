@@ -26,6 +26,7 @@ frappe.xcall = function(method, params) {
 
 // generic server call (call page, object)
 frappe.call = function(opts) {
+	// Change: 如果在本地调试可以注销下面这段代码
 	if (!frappe.is_online()) {
 		frappe.show_alert({
 			indicator: 'orange',

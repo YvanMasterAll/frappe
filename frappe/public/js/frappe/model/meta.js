@@ -218,6 +218,9 @@ $.extend(frappe.meta, {
 	},
 
 	sync_messages: function(doc) {
+		// Change: 输入新增翻译
+		// console.log("新增翻译")
+		// console.log(doc.__messages)
 		if(doc.__messages) {
 			$.extend(frappe._messages, doc.__messages);
 		}

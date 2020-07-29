@@ -244,7 +244,6 @@ frappe.ui.form.ControlLink = frappe.ui.form.ControlData.extend({
 		this.$input.on("awesomplete-select", function(e) {
 			var o = e.originalEvent;
 			var item = me.awesomplete.get_item(o.text.value);
-
 			me.autocomplete_open = false;
 
 			// prevent selection on tab
