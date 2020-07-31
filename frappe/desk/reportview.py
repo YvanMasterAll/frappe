@@ -44,8 +44,9 @@ def get_form_params():
 		data["filters"] = json.loads(data["filters"])
 	if isinstance(data.get("fields"), string_types):
 		data["fields"] = json.loads(data["fields"])
-	if isinstance(data.get("docstatus"), string_types):
-		data["docstatus"] = json.loads(data["docstatus"])
+	# Change: 不添加文档状态字段
+	# if isinstance(data.get("docstatus"), string_types):
+	# 	data["docstatus"] = json.loads(data["docstatus"])
 	if isinstance(data.get("save_user_settings"), string_types):
 		data["save_user_settings"] = json.loads(data["save_user_settings"])
 	else:
@@ -165,7 +166,12 @@ def export_query():
 
 	data = [[_('Sr')] + get_labels(db_query.fields, doctype)]
 	for i, row in enumerate(ret):
-		data.append([i+1] + list(row))
+		# Change: 如果是全字母数据则执行翻译
+		row_list = list(row)
+		for j, el in enumerate(row_list):
+			if frappe.utils.is_full_letter(row_list[j]):
+				row_list[j] = _(row_list[j])
+		data.append([i+1] + row_list)
 
 	if file_format_type == "CSV":
 
