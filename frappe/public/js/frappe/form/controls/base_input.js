@@ -123,7 +123,8 @@ frappe.ui.form.ControlInput = frappe.ui.form.Control.extend({
 			value = frappe.utils.escape_html(value);
 		}
 		let doc = this.doc || (this.frm && this.frm.doc);
-		let display_value = frappe.format(value, this.df, { no_icon: true, inline: true }, doc);
+		// Change: 输入框显示值翻译
+		let display_value = frappe.format(value, this.df, { no_icon: true, inline: true, label: __(value) }, doc);
 		this.disp_area && $(this.disp_area).html(display_value);
 	},
 

@@ -16,7 +16,8 @@ frappe.form.formatters = {
 		}
 	},
 	Data: function(value) {
-		return value==null ? "" : value;
+		// Change: Data类型的值翻译
+		return value==null ? "" : __(value);
 	},
 	Select: function(value) {
 		return __(frappe.form.formatters["Data"](value));

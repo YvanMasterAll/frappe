@@ -1043,6 +1043,9 @@ frappe.ui.form.Form = class FrappeForm {
 		if(!this.doc.__islocal) {
 			frappe.model.remove_from_locals(this.doctype, this.docname);
 			frappe.model.with_doc(this.doctype, this.docname, () => {
+				// Change: 测试输出文档信息
+				console.log("文档信息")
+				console.log(this.doc)
 				this.refresh();
 			});
 		}

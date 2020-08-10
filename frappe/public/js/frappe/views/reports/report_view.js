@@ -511,7 +511,8 @@ frappe.views.ReportView = class ReportView extends frappe.views.ListView {
 				shortenYAxisNumbers: 1
 			},
 			tooltipOptions: {
-				formatTooltipY: value => frappe.format(value, get_df(this.chart_args.y_axes[0]), { always_show_decimals: true, inline: true }, get_doc(value.doc))
+				// Change: 输入框显示值翻译
+				formatTooltipY: value => frappe.format(value, get_df(this.chart_args.y_axes[0]), { always_show_decimals: true, inline: true, label: __(value) }, get_doc(value.doc))
 			}
 		});
 	}
@@ -1014,7 +1015,8 @@ frappe.views.ReportView = class ReportView extends frappe.views.ListView {
 					doc = row;
 				}
 
-				return frappe.format(value, column.docfield, { always_show_decimals: true }, doc);
+				// Change: 输入框显示值翻译
+				return frappe.format(value, column.docfield, { always_show_decimals: true, label: __(value) }, doc);
 			}
 		};
 	}
@@ -1029,7 +1031,8 @@ frappe.views.ReportView = class ReportView extends frappe.views.ListView {
 					name: __('Totals Row'),
 					content: totals[col.id],
 					format: value => {
-						return frappe.format(value, col.docfield, { always_show_decimals: true }, data[0]);
+						// Change: 输入框显示值翻译
+						return frappe.format(value, col.docfield, { always_show_decimals: true, label: __(value) }, data[0]);
 					}
 				}
 			})
@@ -1053,7 +1056,8 @@ frappe.views.ReportView = class ReportView extends frappe.views.ListView {
 					content: d[cdt_field(col.field)] || d[col.field],
 					editable: Boolean(name && this.is_editable(col.docfield, d)),
 					format: value => {
-						return frappe.format(value, col.docfield, { always_show_decimals: true }, d);
+						// Change: 输入框显示值翻译
+						return frappe.format(value, col.docfield, { always_show_decimals: true, label: __(value) }, d);
 					}
 				};
 			}

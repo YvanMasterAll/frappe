@@ -864,8 +864,9 @@ frappe.views.QueryReport = class QueryReport extends frappe.views.BaseList {
 					// this is needed only for currency formatting
 					data = this.data[0];
 				}
+				// Change: 输入框显示值翻译
 				return frappe.format(value, column,
-					{for_print: false, always_show_decimals: true}, data);
+					{for_print: false, always_show_decimals: true, label: __(value)}, data);
 			};
 
 			let compareFn = null;
@@ -907,11 +908,11 @@ frappe.views.QueryReport = class QueryReport extends frappe.views.BaseList {
 				return row_obj;
 			}
 			// Change: 如果是全字母数据则执行翻译
-			for (let key in row) {
-				if (frappe.utils.is_full_letter(row[key])) {
-					row[key] = __(row[key])
-				}
-			}
+			// for (let key in row) {
+			// 	if (frappe.utils.is_full_letter(row[key])) {
+			// 		row[key] = __(row[key])
+			// 	}
+			// }
 			return row;
 		});
 	}
