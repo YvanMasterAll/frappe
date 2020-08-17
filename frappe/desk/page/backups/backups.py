@@ -4,6 +4,7 @@ import frappe
 from frappe import _
 from frappe.utils import get_site_path, cint, get_url
 from frappe.utils.data import convert_utc_to_user_timezone
+from frappe.integrations.offsite_backup_utils import get_latest_backup_file
 import datetime
 
 def get_context(context):
@@ -59,6 +60,31 @@ def delete_downloadable_backups():
 
 	if len(files) > backup_limit:
 		cleanup_old_backups(path, files, backup_limit)
+
+# 将数据备份到LeanCloud
+def backup_to_leancloud():
+	import leancloud
+	# 1).获取备份文件
+	if frappe.flags.create_new_backup:
+		backup = new_backup(ignore_files=False, backup_path_db=None,
+						backup_path_files=None, backup_path_private_files=None, force=True)
+		db_filename = os.path.join(get_backups_path(), os.path.basename(backup.backup_path_db))
+		site_config = os.path.join(get_backups_path(), os.path.basename(backup.site_config_backup_path))
+	else:
+		db_filename, site_config = get_latest_backup_file()
+	# 2).判断备份文件存在
+	if not os.path.exists(db_filename):
+		return
+	# 3).异常捕获
+	try:
+		# 4).初始化LeanCloud
+		leancloud.init("UTrnPCDic1gQxP00htONgg5W-gzGzoHsz", "EyGwc2A7fFzq8x2UEkClXw2h")
+		# 5).文件上传
+		with open(db_filename, 'rb') as f:
+			file = leancloud.File(os.path.basename(db_filename), f)
+			file.save()
+	except Exception as ex:
+		frappe.log_error(title='数据库备份（LeanCloud）异常', message="%s"%ex)
 
 @frappe.whitelist()
 def schedule_files_backup(user_email):
