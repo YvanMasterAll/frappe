@@ -27,14 +27,14 @@ frappe.xcall = function(method, params) {
 // generic server call (call page, object)
 frappe.call = function(opts) {
 	// Change: 如果在本地调试可以注销下面这段代码
-	if (!frappe.is_online()) {
-		frappe.show_alert({
-			indicator: 'orange',
-			message: __('You are not connected to Internet. Retry after sometime.')
-		}, 3);
-		opts.always && opts.always();
-		return $.ajax();
-	}
+	// if (!frappe.is_online()) {
+	// 	frappe.show_alert({
+	// 		indicator: 'orange',
+	// 		message: __('You are not connected to Internet. Retry after sometime.')
+	// 	}, 3);
+	// 	opts.always && opts.always();
+	// 	return $.ajax();
+	// }
 	if (typeof arguments[0]==='string') {
 		opts = {
 			method: arguments[0],

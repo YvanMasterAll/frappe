@@ -130,8 +130,9 @@ class Database(object):
 		if auto_commit: self.commit()
 
 		# Change: 打印数据库操作语句
-		if query.startswith("INSERT INTO") or query.startswith("update") or query.startswith("delete from"):
-			print(query)
+		if debug:
+			if query.startswith("INSERT INTO") or query.startswith("update") or query.startswith("delete from"):
+				print(query)
 
 		# execute
 		try:
