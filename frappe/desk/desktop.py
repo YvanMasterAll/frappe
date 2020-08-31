@@ -335,7 +335,9 @@ def get_desk_sidebar_items(flatten=False):
 		'restrict_to_domain': ['in', frappe.get_active_domains()],
 		'extends_another_page': 0,
 		'for_user': '',
-		'module': ['not in', blocked_modules]
+		'module': ['not in', blocked_modules],
+		# Change: 因为模块名和目录名不同所以在这里加上一个标签判断
+		'label': ['not in', blocked_modules],
 	}
 
 	if not frappe.local.conf.developer_mode:

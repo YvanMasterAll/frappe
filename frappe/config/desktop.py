@@ -25,6 +25,17 @@ def get_data():
 			"type": "module",
 			"description": "Data import, printing, email and workflows."
 		},
+		# Change: 将用户模块也加入到可配置数据
+		{
+			"module_name": "Users",
+			"category": "Administration",
+			"label": _("Users"),
+			"color": "#bdc3c7",
+			"reverse": 1,
+			"icon": "octicon octicon-users",
+			"type": "module",
+			"description": "System and Website Users."
+		},
 		{
 			"module_name": "Automation",
 			"category": "Administration",
