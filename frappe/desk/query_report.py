@@ -321,6 +321,8 @@ def export_query():
 		data = frappe._dict(data)
 		# Change: 如果是全字母数据则执行翻译
 		for row in data.result:
+			if isinstance(row, list):
+				continue
 			for cell in row:
 				if frappe.utils.is_full_letter(row[cell]):
 					row[cell] = _(row[cell])
